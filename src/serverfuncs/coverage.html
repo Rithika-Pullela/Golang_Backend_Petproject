@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>serverfuncs: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">beprj/src/serverfuncs/AddMockData.go (0.0%)</option>
+				
+				<option value="file1">beprj/src/serverfuncs/add.go (89.6%)</option>
+				
+				<option value="file2">beprj/src/serverfuncs/get.go (98.5%)</option>
+				
+				<option value="file3">beprj/src/serverfuncs/update.go (92.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package serverfuncs
+
+import (
+        s "beprj/src/Structs"
+        "github.com/jinzhu/gorm"
+)
+
+func InsertMockData(db *gorm.DB) error <span class="cov0" title="0">{
+        users := []s.Student{
+                {FirstName: "Ramana", LastName: "Pullela", Email: "john@example.com"},
+                {FirstName: "Rithika1", LastName: "Pullela1", Email: "john1@example.com"},
+                {FirstName: "Rithika2", LastName: "Pullela2", Email: "john2@example.com"},
+                {FirstName: "Rithika3", LastName: "Pullela3", Email: "john3@example.com"},
+        }
+
+        for _, user := range users </span><span class="cov0" title="0">{
+                result := db.Create(&amp;user)
+                if result.Error != nil </span><span class="cov0" title="0">{
+                        return result.Error
+                }</span>
+        }
+
+        <span class="cov0" title="0">users2 := []s.Faculty{
+                {FirstName: "f1", LastName: "l1", Email: "fac1@example.com"},
+                {FirstName: "f2", LastName: "l2", Email: "fac2@example.com"},
+        }
+
+        for _, user := range users2 </span><span class="cov0" title="0">{
+                result := db.Create(&amp;user)
+                if result.Error != nil </span><span class="cov0" title="0">{
+                        return result.Error
+                }</span>
+        }
+
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package serverfuncs
+
+import (
+        dataBase "beprj/src/db"
+        pb "beprj/src/proto"
+        "context"
+        "fmt"
+        "github.com/jinzhu/gorm"
+        _ "github.com/lib/pq"
+)
+
+type UniversityServer struct {
+        pb.UnimplementedUniversityFuncServer
+        Db dataBase.Database
+        DB *gorm.DB
+}
+
+func (u *UniversityServer) AddCourse(ctx context.Context, in *pb.CourseDetails) (*pb.CourseDetails, error) <span class="cov8" title="1">{
+        // cname ledu = error
+        // fid==0 create course
+        //fid invalid---dont create course
+        // fid!=0 create course and add fac to course
+        
+        var fid = in.GetFacultyID()
+        var c_name = in.GetName()
+        if c_name == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Course name cannot be empty!")
+        }</span>
+
+        <span class="cov8" title="1">if fid==0</span><span class="cov8" title="1">{
+                x, err := u.Db.CreateCourse(c_name)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov8" title="1">res:=&amp;pb.CourseDetails{
+                        ID:   int32(x),
+                        Name: c_name,
+                }
+                return res,nil</span>
+        }
+
+        <span class="cov8" title="1">fac_exists, fac_err := u.Db.CheckFacultyExistance(fid)
+        if !fac_exists </span><span class="cov8" title="1">{
+                return nil, fac_err
+        }</span>
+        <span class="cov8" title="1">x, err := u.Db.CreateCourse(c_name)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        
+        <span class="cov8" title="1">res := &amp;pb.CourseDetails{
+                ID:   int32(x),
+                Name: c_name,
+        }
+        err = u.Db.AddFacToCourse(fid, x)
+        if err != nil </span><span class="cov8" title="1">{
+                return res, err
+        }</span>
+        <span class="cov8" title="1">res.FacultyID = fid
+        return res, nil</span>
+}
+
+func (u *UniversityServer) AddStudent(ctx context.Context, in *pb.User) (*pb.User, error) <span class="cov8" title="1">{
+        fname := in.GetFirstName()
+        lname := in.GetLastName()
+        email := in.GetEmail()
+        if fname == "" || lname == "" || email == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Provide all the details!")
+        }</span>
+        <span class="cov8" title="1">id, err := u.Db.CreateStudent(fname, lname, email)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">res := &amp;pb.User{
+                ID:        int32(id),
+                FirstName: fname,
+                LastName:  lname,
+                Email:     email,
+        }
+        return res, nil</span>
+}
+
+func (u *UniversityServer) AddFaculty(ctx context.Context, in *pb.User) (*pb.User, error) <span class="cov8" title="1">{
+
+        fname := in.GetFirstName()
+        lname := in.GetLastName()
+        email := in.GetEmail()
+        if fname == "" || lname == "" || email == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Provide all the details!")
+        }</span>
+        <span class="cov8" title="1">id, err := u.Db.CreateFaculty(fname, lname, email)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">res := &amp;pb.User{
+                ID:        int32(id),
+                FirstName: fname,
+                LastName:  lname,
+                Email:     email,
+        }
+        return res, nil</span>
+}
+
+func (u *UniversityServer) AddEnrollment(ctx context.Context, in *pb.EnrollRequest) (*pb.Status, error) <span class="cov8" title="1">{
+
+        sid := in.GetStudentID()
+        cid := in.GetCourseID()
+        if sid == 0 || cid == 0 </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Mention student id and and course id to enroll student in a course")
+        }</span>
+        <span class="cov8" title="1">res := &amp;pb.Status{
+                Des: "Enrollment Failed",
+        }
+        err := u.Db.AddCoursetoStd(int32(sid), int(cid))
+        if err != nil </span><span class="cov0" title="0">{
+                res.Error = err.Error()
+                return res, nil
+        }</span>
+        <span class="cov8" title="1">suc := &amp;pb.Status{
+                Des: "Enrollment Successss",
+        }
+        return suc, nil</span>
+}
+
+func (u *UniversityServer) AddAssignment(ctx context.Context, in *pb.Assignment) (*pb.Assignment, error) <span class="cov8" title="1">{
+        _, err2 := u.Db.CheckCourseExistance(int32(in.GetCourseId()))
+        if err2 != nil </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Course Doesn't Exists!")
+        }</span>
+        <span class="cov8" title="1">title := in.GetTitle()
+        des := in.GetDescription()
+        deadline := in.GetDeadline()
+        cid := in.GetCourseId()
+        if title == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Enter Assignment title!!")
+        }</span>
+        <span class="cov8" title="1">id, err := u.Db.CreateAssignment(title, des, deadline, cid)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf(err.Error())
+        }</span>
+        <span class="cov8" title="1">res := &amp;pb.Assignment{
+                ID:          int32(id),
+                Title:       title,
+                Description: des,
+                Deadline:    deadline,
+                CourseId:    cid,
+        }
+        return res, nil</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package serverfuncs
+
+import (
+        pb "beprj/src/proto"
+        "context"
+        _ "github.com/lib/pq"
+        
+)
+
+func (u *UniversityServer) GetCourseByCourseId(ctx context.Context, in *pb.CourseDetails) (*pb.CourseDetails, error) <span class="cov8" title="1">{
+        cid := in.GetID()
+        res, err := u.Db.GetCourseByCourseId(cid)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.CourseDetails{
+                ID:        cid,
+                Name:      res.Name,
+                FacultyID: int32(res.FacultyID),
+                Faculty: &amp;pb.User{
+                        FirstName: res.Faculty.FirstName,
+                        LastName:  res.Faculty.LastName,
+                        Email:     res.Faculty.Email,
+                },
+        }
+        return result, nil</span>
+}
+
+func (u *UniversityServer) GetStudentByEmail(ctx context.Context, in *pb.User) (*pb.User, error) <span class="cov8" title="1">{
+        mail := in.GetEmail()
+        res, err := u.Db.GetStudent(mail)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.User{
+                FirstName: res.FirstName,
+                LastName:  res.LastName,
+                Email:     res.Email,
+        }
+        return result, nil</span>
+}
+
+func (u *UniversityServer) GetFacultyByEmail(ctx context.Context, in *pb.User) (*pb.User, error) <span class="cov8" title="1">{
+        email := in.GetEmail()
+        res, err := u.Db.GetFaculty(email)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.User{
+                FirstName: res.FirstName,
+                LastName:  res.LastName,
+                Email:     res.Email,
+        }
+        return result, nil</span>
+}
+
+func (u *UniversityServer) GetAllCourses(ctx context.Context, in *pb.Empty) (*pb.CourseList, error) <span class="cov8" title="1">{
+        res, err := u.Db.GetAllCourses()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.CourseList{}
+        for _, course := range res </span><span class="cov8" title="1">{
+                x := &amp;pb.CourseDetails{
+                        FacultyID: int32(course.FacultyID),
+                        Name:      course.Name,
+                        ID:        int32(course.ID),
+                        Faculty: &amp;pb.User{
+                                ID:        int32(course.Faculty.ID),
+                                FirstName: course.Faculty.FirstName,
+                                LastName:  course.Faculty.LastName,
+                                Email:     course.Faculty.Email,
+                        },
+                }
+                result.Courses = append(result.Courses, x)
+
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
+}
+
+func (u *UniversityServer) GetCoursesEnrolledByStudentEmail(ctx context.Context, in *pb.User) (*pb.CourseList, error) <span class="cov8" title="1">{
+        email := in.GetEmail()
+        res, err := u.Db.GetCoursesEnrolledByStudentEmail(email)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.CourseList{}
+        for _, course := range res </span><span class="cov8" title="1">{
+                x := &amp;pb.CourseDetails{
+                        FacultyID: int32(course.FacultyID),
+                        Name:      course.Name,
+                        ID:        int32(course.ID),
+                        Faculty: &amp;pb.User{
+                                ID:        int32(course.Faculty.ID),
+                                FirstName: course.Faculty.FirstName,
+                                LastName:  course.Faculty.LastName,
+                                Email:     course.Faculty.Email,
+                        },
+                }
+                result.Courses = append(result.Courses, x)
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
+}
+
+func (u *UniversityServer) GetCoursesByFacultyEmail(ctx context.Context, in *pb.User) (*pb.CourseList, error) <span class="cov8" title="1">{
+        email := in.GetEmail()
+        res, err := u.Db.GetCoursesByFacultyEmail(email)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">result := &amp;pb.CourseList{}
+        for _, course := range res </span><span class="cov8" title="1">{
+                x := &amp;pb.CourseDetails{
+                        FacultyID: int32(course.FacultyID),
+                        Name:      course.Name,
+                        ID:        int32(course.ID),
+                        
+                }
+                result.Courses = append(result.Courses, x)
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
+}
+
+func (u *UniversityServer) GetFacultyByCourseId(ctx context.Context, in *pb.CourseDetails) (*pb.User, error) <span class="cov8" title="1">{
+        cId := in.GetID()
+        res, err := u.Db.GetFacultyByCourseId(cId)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">ans := &amp;pb.User{
+                ID: int32(res.ID),
+                FirstName: res.FirstName,
+                LastName:  res.LastName,
+                Email:     res.Email,
+        }
+        return ans, nil</span>
+}
+
+func (u *UniversityServer) GetStudentsEnrolledByCourseId(ctx context.Context, in *pb.CourseDetails) (*pb.UserList, error) <span class="cov8" title="1">{
+        cId := in.GetID()
+        res, err := u.Db.GetStudentsEnrolledByCourseId(cId)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">response := &amp;pb.UserList{}
+        for _, student := range res </span><span class="cov8" title="1">{
+                x := &amp;pb.User{
+                        FirstName: student.FirstName,
+                        LastName:  student.LastName,
+                        Email:     student.Email,
+                }
+                response.Users = append(response.Users, x)
+        }</span>
+        <span class="cov8" title="1">return response, nil</span>
+}
+
+func (u *UniversityServer) GetAssignmentsByCourseId(ctx context.Context, in *pb.CourseDetails) (*pb.AssignmentList, error) <span class="cov8" title="1">{
+
+        cId := in.GetID()
+        res, err := u.Db.GetAssignmentsByCourseId(cId)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">response := &amp;pb.AssignmentList{}
+        for _, assignment := range res </span><span class="cov8" title="1">{
+                x := &amp;pb.Assignment{
+                        Title:       assignment.Title,
+                        Description: assignment.Description,
+                        Deadline:    assignment.Deadline.Format("01/02/2006"),
+                }
+                response.Assignments = append(response.Assignments, x)
+        }</span>
+        <span class="cov8" title="1">return response, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package serverfuncs
+
+import (
+        str "beprj/src/Structs"
+        pb "beprj/src/proto"
+        "context"
+        "fmt"
+        _ "github.com/lib/pq"
+        "time"
+)
+
+func (u *UniversityServer) UpdateCourse(ctx context.Context, in *pb.CourseDetails) (*pb.CourseDetails, error) <span class="cov8" title="1">{
+
+        if in.GetFacultyID() == 0 || in.GetName() == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Enter valid input to properly update the course")
+        }</span>
+        <span class="cov8" title="1">fid := in.GetFacultyID()
+        c_name := in.GetName()
+        cid := in.GetID()
+        res, err := u.Db.UpdateCourse(fid, c_name, cid)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return &amp;pb.CourseDetails{
+                ID:        int32(res.ID),
+                Name:      res.Name,
+                FacultyID: int32(res.FacultyID),
+        }, nil</span>
+}
+
+func (u *UniversityServer) UpdateAssignment(ctx context.Context, in *pb.Assignment) (*pb.Assignment, error) <span class="cov8" title="1">{
+        aid := in.GetID()
+        deadline := in.GetDeadline()
+        des := in.GetDescription()
+        title := in.GetTitle()
+        if deadline == "" || des == "" || title == "" </span><span class="cov8" title="1">{
+                return nil, fmt.Errorf("Enter valid input to properly update the assignment")
+        }</span>
+        <span class="cov8" title="1">layout := "01/02/2006"
+        s, err := time.Parse(layout, deadline)
+        if err != nil </span><span class="cov0" title="0">{
+                fmt.Println("Error parsing date:", err)
+                return nil, fmt.Errorf(err.Error())
+        }</span>
+        <span class="cov8" title="1">x := str.Assignment{
+                Title:       title,
+                Deadline:    s,
+                Description: des,
+        }
+        res, err := u.Db.UpdateAssignment(x, aid)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return &amp;pb.Assignment{
+                ID:          int32(res.ID),
+                Title:       res.Title,
+                Description: res.Description,
+                Deadline:    res.Deadline.Format("01/02/2006"),
+        }, nil</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
