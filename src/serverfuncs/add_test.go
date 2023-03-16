@@ -33,13 +33,15 @@ func TestAddCourse(t *testing.T) {
 			name: "valid_course_no_faculty",
 			input: &pb.CourseDetails{
 				Name: "test_course",
+				Image: "aa",
 			},
 			mockFunc: func() {
-				mockDb.EXPECT().CreateCourse(gomock.Any()).Return(123, nil)
+				mockDb.EXPECT().CreateCourse(gomock.Any(),gomock.Any()).Return(123,"aa", nil)
 			},
 			expectedOutput: &pb.CourseDetails{
 				ID:   123,
 				Name: "test_course",
+				Image: "aa",
 			},
 			expectedError: nil,
 		},
@@ -48,15 +50,17 @@ func TestAddCourse(t *testing.T) {
 			input: &pb.CourseDetails{
 				Name:      "test_course",
 				FacultyID: 1,
+				Image: "aa",
 			},
 			mockFunc: func() {
 				mockDb.EXPECT().CheckFacultyExistance(gomock.Any()).Return(true, nil)
-				mockDb.EXPECT().CreateCourse(gomock.Any()).Return(123, nil)
+				mockDb.EXPECT().CreateCourse(gomock.Any(),gomock.Any()).Return(123, "aa",nil)
 				mockDb.EXPECT().AddFacToCourse(gomock.Any(), gomock.Any()).Return(nil)
 			},
 			expectedOutput: &pb.CourseDetails{
 				ID:        123,
 				Name:      "test_course",
+				Image: "aa",
 				FacultyID: 1,
 			},
 			expectedError: nil,
@@ -65,15 +69,27 @@ func TestAddCourse(t *testing.T) {
 			name: "invalid_course_missing_name",
 			input: &pb.CourseDetails{
 				FacultyID: 1,
+				Image: "aa",
 			},
 			mockFunc:       func() {},
 			expectedOutput: nil,
-			expectedError:  fmt.Errorf("Course name cannot be empty!"),
+			expectedError:  fmt.Errorf("Course fields cannot be empty!"),
+		},
+		{
+			name: "invalid_course_missing_image",
+			input: &pb.CourseDetails{
+				Name:      "test_course",
+				FacultyID: 1,
+			},
+			mockFunc:       func() {},
+			expectedOutput: nil,
+			expectedError:  fmt.Errorf("Course fields cannot be empty!"),
 		},
 		{
 			name: "missing_faculty",
 			input: &pb.CourseDetails{
 				Name: "test_course",
+				Image: "aa",
 				FacultyID: 200,
 			},
 			mockFunc: func() {
@@ -87,18 +103,15 @@ func TestAddCourse(t *testing.T) {
 			name: "Add_Fac_fails",
 			input: &pb.CourseDetails{
 				Name: "test_course",
+				Image: "aa",
 				FacultyID: 1,
 			},
 			mockFunc: func() {
 				mockDb.EXPECT().CheckFacultyExistance(gomock.Any()).Return(true, nil)
-				mockDb.EXPECT().CreateCourse(gomock.Any()).Return(123, nil)
+				mockDb.EXPECT().CreateCourse(gomock.Any(),gomock.Any()).Return(123,"aa", nil)
 				mockDb.EXPECT().AddFacToCourse(gomock.Any(), gomock.Any()).Return(fmt.Errorf("Faculty not added!"))
 			},
-			expectedOutput: &pb.CourseDetails{
-				ID:        123,
-				Name:      "test_course",
-				
-			},
+			expectedOutput: nil,
 			expectedError: fmt.Errorf("Faculty not added!"),
 		},
 	}

@@ -10,46 +10,102 @@ service UniversityFunc{
 
    rpc AddCourse(CourseDetails)returns(CourseDetails){
     option (google.api.http) = {
-        post: "/addcourse"
+        post: "/addCourse"
         body: "*"
       };
-
-   }//1done -check
+   }//1
    rpc AddStudent(User)returns(User){
     option (google.api.http) = {
-        post: "/addstudent"
+        post: "/addStudent"
+        body: "*"
+      };
+   } //2
+   rpc AddFaculty(User)returns(User){
+    option (google.api.http) = {
+        post: "/addFaculty"
         body: "*"
       };
 
-   } //2done -check
-   rpc AddFaculty(User)returns(User){} //3done  -check return parameters,error handling,validations
+   } //3
    rpc AddEnrollment(EnrollRequest)returns(Status){
     option (google.api.http) = {
-        post: "/enroll"
+        post: "/addEnrollment"
         body: "*"
       };
-
-
-   } //4 done  check
-   rpc AddAssignment(Assignment)returns(Assignment){} //5
-
-   rpc GetCourseByCourseId(CourseDetails) returns(CourseDetails){} //6 done 
-   rpc GetStudentByEmail(User)returns(User){} //7 done
-   rpc GetFacultyByEmail(User)returns(User){} //8 done
+   } //4 
+   rpc AddAssignment(Assignment)returns(Assignment){
+    option (google.api.http) = {
+        post: "/addAssignment"
+        body: "*"
+      };
+   } //5
+   rpc GetCourseByCourseId(CourseDetails) returns(CourseDetails){
+    option (google.api.http) = {
+        post: "/getCourseByCourseId"
+        body: "*"
+      };
+   } //6 
+   rpc GetStudentByEmail(User)returns(User){
+    option (google.api.http) = {
+        post: "/getStudent"
+        body: "*"
+      };
+   } //7 done
+   rpc GetFacultyByEmail(User)returns(User){
+    option (google.api.http) = {
+        post: "/getFaculty"
+        body: "*"
+      };
+   } //8 done
    rpc GetAllCourses(Empty)returns(CourseList){
          option (google.api.http) = {
              post: "/users/courses"
              body: "*"
            };
    } //9 done
-   rpc GetCoursesEnrolledByStudentEmail(User)returns(CourseList){} //10  done
-   rpc GetCoursesByFacultyEmail(User)returns(CourseList){} //11 done
-   rpc GetFacultyByCourseId(CourseDetails)returns(User){} //12 done
-   rpc GetStudentsEnrolledByCourseId(CourseDetails)returns(UserList){} //13 done
-   rpc GetAssignmentsByCourseId(CourseDetails)returns(AssignmentList){} //14 done
+   rpc GetCoursesEnrolledByStudentEmail(User)returns(CourseList){
+    option (google.api.http) = {
+        post: "/getCoursesEnrolledByStudentEmail"
+        body: "*"
+      };
+   } //10  done
+   rpc GetCoursesByFacultyEmail(User)returns(CourseList){
+    option (google.api.http) = {
+        post: "/getCoursesByFacultyEmail"
+        body: "*"
+      };
+   } //11 done
+   rpc GetFacultyByCourseId(CourseDetails)returns(User){
+    option (google.api.http) = {
+        post: "/getFacultyByCourseId"
+        body: "*"
+      };
+   } //12 done
+   rpc GetStudentsEnrolledByCourseId(CourseDetails)returns(UserList){
+    option (google.api.http) = {
+        post: "/getStudentsEnrolledByCourseId"
+        body: "*"
+      };
+   } //13 done
+   rpc GetAssignmentsByCourseId(CourseDetails)returns(AssignmentList){
+    option (google.api.http) = {
+        post: "/getAssignmentsByCourseId"
+        body: "*"
+      };
+   } //14 done
 
-   rpc UpdateCourse(CourseDetails)returns(CourseDetails){} //15  done
-   rpc UpdateAssignment(Assignment)returns(Assignment){} //16 done
+   rpc UpdateCourse(CourseDetails)returns(CourseDetails){
+    option (google.api.http) = {
+        post: "/updateCourse"
+        body: "*"
+      };
+   } //15  done
+   rpc UpdateAssignment(Assignment)returns(Assignment){
+    option (google.api.http) = {
+        post: "/updateAssignment"
+        body: "*"
+      };
+   } //16 done
    
 
 } 
@@ -59,8 +115,6 @@ message Empty{}
 message Status{
     string Des=1;
     string Error=2;
-    //status code 200 
-    //error
 }
 
 message CourseDetails{
@@ -68,6 +122,7 @@ message CourseDetails{
     string Name=2;
     int32 FacultyID=3;
     User Faculty=4;
+    string Image=5;
 }
 
 message CourseList{
@@ -98,6 +153,7 @@ message Assignment{
 	string  Description=3;
     string   Deadline=4;  
 	int32 CourseId=5;  	  
+    string progress=6;
 }
 
 message AssignmentList{

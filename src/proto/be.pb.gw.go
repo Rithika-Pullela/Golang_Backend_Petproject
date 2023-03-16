@@ -589,7 +589,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddCourse", runtime.WithHTTPPathPattern("/addcourse"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddCourse", runtime.WithHTTPPathPattern("/addCourse"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -614,7 +614,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddStudent", runtime.WithHTTPPathPattern("/addstudent"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddStudent", runtime.WithHTTPPathPattern("/addStudent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -639,7 +639,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddFaculty", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/AddFaculty"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddFaculty", runtime.WithHTTPPathPattern("/addFaculty"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -664,7 +664,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddEnrollment", runtime.WithHTTPPathPattern("/enroll"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddEnrollment", runtime.WithHTTPPathPattern("/addEnrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -689,7 +689,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddAssignment", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/AddAssignment"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/AddAssignment", runtime.WithHTTPPathPattern("/addAssignment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -714,7 +714,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCourseByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCourseByCourseId"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCourseByCourseId", runtime.WithHTTPPathPattern("/getCourseByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -739,7 +739,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentByEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetStudentByEmail"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentByEmail", runtime.WithHTTPPathPattern("/getStudent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -764,7 +764,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetFacultyByEmail"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByEmail", runtime.WithHTTPPathPattern("/getFaculty"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -814,7 +814,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail", runtime.WithHTTPPathPattern("/getCoursesEnrolledByStudentEmail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -839,7 +839,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesByFacultyEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCoursesByFacultyEmail"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesByFacultyEmail", runtime.WithHTTPPathPattern("/getCoursesByFacultyEmail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -864,7 +864,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetFacultyByCourseId"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByCourseId", runtime.WithHTTPPathPattern("/getFacultyByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -889,7 +889,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId", runtime.WithHTTPPathPattern("/getStudentsEnrolledByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -914,7 +914,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetAssignmentsByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetAssignmentsByCourseId"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/GetAssignmentsByCourseId", runtime.WithHTTPPathPattern("/getAssignmentsByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -939,7 +939,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateCourse", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/UpdateCourse"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateCourse", runtime.WithHTTPPathPattern("/updateCourse"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -964,7 +964,7 @@ func RegisterUniversityFuncHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateAssignment", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/UpdateAssignment"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateAssignment", runtime.WithHTTPPathPattern("/updateAssignment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1028,7 +1028,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddCourse", runtime.WithHTTPPathPattern("/addcourse"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddCourse", runtime.WithHTTPPathPattern("/addCourse"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1050,7 +1050,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddStudent", runtime.WithHTTPPathPattern("/addstudent"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddStudent", runtime.WithHTTPPathPattern("/addStudent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1072,7 +1072,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddFaculty", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/AddFaculty"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddFaculty", runtime.WithHTTPPathPattern("/addFaculty"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1094,7 +1094,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddEnrollment", runtime.WithHTTPPathPattern("/enroll"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddEnrollment", runtime.WithHTTPPathPattern("/addEnrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1116,7 +1116,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddAssignment", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/AddAssignment"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/AddAssignment", runtime.WithHTTPPathPattern("/addAssignment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1138,7 +1138,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCourseByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCourseByCourseId"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCourseByCourseId", runtime.WithHTTPPathPattern("/getCourseByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1160,7 +1160,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentByEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetStudentByEmail"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentByEmail", runtime.WithHTTPPathPattern("/getStudent"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1182,7 +1182,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetFacultyByEmail"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByEmail", runtime.WithHTTPPathPattern("/getFaculty"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1226,7 +1226,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesEnrolledByStudentEmail", runtime.WithHTTPPathPattern("/getCoursesEnrolledByStudentEmail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1248,7 +1248,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesByFacultyEmail", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetCoursesByFacultyEmail"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetCoursesByFacultyEmail", runtime.WithHTTPPathPattern("/getCoursesByFacultyEmail"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1270,7 +1270,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetFacultyByCourseId"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetFacultyByCourseId", runtime.WithHTTPPathPattern("/getFacultyByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1292,7 +1292,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetStudentsEnrolledByCourseId", runtime.WithHTTPPathPattern("/getStudentsEnrolledByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1314,7 +1314,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetAssignmentsByCourseId", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/GetAssignmentsByCourseId"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/GetAssignmentsByCourseId", runtime.WithHTTPPathPattern("/getAssignmentsByCourseId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1336,7 +1336,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateCourse", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/UpdateCourse"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateCourse", runtime.WithHTTPPathPattern("/updateCourse"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1358,7 +1358,7 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateAssignment", runtime.WithHTTPPathPattern("/backendProto.UniversityFunc/UpdateAssignment"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/backendProto.UniversityFunc/UpdateAssignment", runtime.WithHTTPPathPattern("/updateAssignment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1378,37 +1378,37 @@ func RegisterUniversityFuncHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_UniversityFunc_AddCourse_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addcourse"}, ""))
+	pattern_UniversityFunc_AddCourse_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addCourse"}, ""))
 
-	pattern_UniversityFunc_AddStudent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addstudent"}, ""))
+	pattern_UniversityFunc_AddStudent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addStudent"}, ""))
 
-	pattern_UniversityFunc_AddFaculty_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "AddFaculty"}, ""))
+	pattern_UniversityFunc_AddFaculty_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addFaculty"}, ""))
 
-	pattern_UniversityFunc_AddEnrollment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"enroll"}, ""))
+	pattern_UniversityFunc_AddEnrollment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addEnrollment"}, ""))
 
-	pattern_UniversityFunc_AddAssignment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "AddAssignment"}, ""))
+	pattern_UniversityFunc_AddAssignment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"addAssignment"}, ""))
 
-	pattern_UniversityFunc_GetCourseByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetCourseByCourseId"}, ""))
+	pattern_UniversityFunc_GetCourseByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getCourseByCourseId"}, ""))
 
-	pattern_UniversityFunc_GetStudentByEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetStudentByEmail"}, ""))
+	pattern_UniversityFunc_GetStudentByEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getStudent"}, ""))
 
-	pattern_UniversityFunc_GetFacultyByEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetFacultyByEmail"}, ""))
+	pattern_UniversityFunc_GetFacultyByEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getFaculty"}, ""))
 
 	pattern_UniversityFunc_GetAllCourses_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "courses"}, ""))
 
-	pattern_UniversityFunc_GetCoursesEnrolledByStudentEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetCoursesEnrolledByStudentEmail"}, ""))
+	pattern_UniversityFunc_GetCoursesEnrolledByStudentEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getCoursesEnrolledByStudentEmail"}, ""))
 
-	pattern_UniversityFunc_GetCoursesByFacultyEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetCoursesByFacultyEmail"}, ""))
+	pattern_UniversityFunc_GetCoursesByFacultyEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getCoursesByFacultyEmail"}, ""))
 
-	pattern_UniversityFunc_GetFacultyByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetFacultyByCourseId"}, ""))
+	pattern_UniversityFunc_GetFacultyByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getFacultyByCourseId"}, ""))
 
-	pattern_UniversityFunc_GetStudentsEnrolledByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetStudentsEnrolledByCourseId"}, ""))
+	pattern_UniversityFunc_GetStudentsEnrolledByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getStudentsEnrolledByCourseId"}, ""))
 
-	pattern_UniversityFunc_GetAssignmentsByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "GetAssignmentsByCourseId"}, ""))
+	pattern_UniversityFunc_GetAssignmentsByCourseId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"getAssignmentsByCourseId"}, ""))
 
-	pattern_UniversityFunc_UpdateCourse_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "UpdateCourse"}, ""))
+	pattern_UniversityFunc_UpdateCourse_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"updateCourse"}, ""))
 
-	pattern_UniversityFunc_UpdateAssignment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"backendProto.UniversityFunc", "UpdateAssignment"}, ""))
+	pattern_UniversityFunc_UpdateAssignment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"updateAssignment"}, ""))
 )
 
 var (

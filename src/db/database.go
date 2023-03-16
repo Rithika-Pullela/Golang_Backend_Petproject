@@ -2,17 +2,17 @@ package database
 
 import (
 	str "beprj/src/Structs"
-	"time"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
+	"time"
 )
 
 type Database interface {
 
 	//implement db level func
 
-	CreateCourse(string) (int, error)
+	CreateCourse(string,string) (int, string,error)
 	AddFacToCourse(int32, int) error
 
 	CreateStudent(string, string, string) (int, error)
@@ -114,26 +114,27 @@ func (s *DBClient) CreateFaculty(fname string, lname string, email string) (int,
 	return int(fac.ID), nil
 }
 
-func (s *DBClient) CreateCourse(name string) (int, error) {
+func (s *DBClient) CreateCourse(name string ,image string) (int,string, error) {
 	var c str.Course
 	c.Name = name
+	c.Image = image
 	err := s.Db.Create(&c).Error
 	if err != nil {
-		return 0, fmt.Errorf(err.Error())
+		return 0, "",fmt.Errorf(err.Error())
 	}
 
-	return int(c.ID), nil
+	return int(c.ID),image,nil
 
 }
 
 func (s *DBClient) AddFacToCourse(fId int32, cId int) error {
 	var c str.Course
-	err := s.Db.Where("ID=?", cId).First(&c).Error
-	if err != nil {
-		return fmt.Errorf(err.Error())
+	res := s.Db.Where("ID = ?", cId).First(&c)
+	if res.Error != nil {
+		return fmt.Errorf(res.Error.Error())
 	}
 	c.FacultyID = uint(fId)
-	err = s.Db.Save(&c).Error
+	err := s.Db.Save(&c).Error
 	if err != nil {
 		return fmt.Errorf(err.Error())
 	}

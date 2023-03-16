@@ -1,0 +1,3 @@
+mode = "count"
+output = "coverage.txt"
+ignore ="AddMockData.go"

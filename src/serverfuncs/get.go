@@ -70,7 +70,9 @@ func (u *UniversityServer) GetAllCourses(ctx context.Context, in *pb.Empty) (*pb
 				FirstName: course.Faculty.FirstName,
 				LastName:  course.Faculty.LastName,
 				Email:     course.Faculty.Email,
+				
 			},
+			Image: course.Image,
 		}
 		result.Courses = append(result.Courses, x)
 

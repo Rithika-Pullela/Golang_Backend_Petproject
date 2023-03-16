@@ -27,21 +27,22 @@ func main() {
 	fmt.Println("Connection Successfull")
 	fmt.Println()
 
-	// cou := &pb.CourseDetails{
-	// 	Name:      "cooooppsss",
-	// 	FacultyID: 1,
-	// }
-	// res, err := c.AddCourse(ctx, cou)
-	// fmt.Println("AddCourse ", res,err)
-	// fmt.Println()
-
-	cou2 := &pb.CourseDetails{
-		FacultyID:   1,
-		Name: "test_course",
+	cou := &pb.CourseDetails{
+		Name:      "cooooppsss",
+		FacultyID: 1,
+		Image: "https://cdn.educba.com/academy/wp-content/uploads/2018/12/Computer-Architecture.jpg",
 	}
-	res1, err := c.AddCourse(ctx, cou2)
-	fmt.Println("AddCoursetestttt", res1,err)
+	res, err := c.AddCourse(ctx, cou)
+	fmt.Println("AddCourse ", res,err)
 	fmt.Println()
+
+	// cou2 := &pb.CourseDetails{
+	// 	FacultyID:   1,
+	// 	Name: "test_course",
+	// }
+	// res1, err := c.AddCourse(ctx, cou2)
+	// fmt.Println("AddCoursetestttt", res1,err)
+	// fmt.Println()
 
 
 	// cou3 := &pb.CourseDetails{
@@ -51,13 +52,14 @@ func main() {
 	// res3, err := c.AddCourse(ctx, cou3)
 	// fmt.Println("AddCourse", res3,err)
 	// fmt.Println()
-	// std := &pb.User{
-	// 	FirstName: "John",
-	// 	Email:     "john.doe@example.com",
-	// }
-	// stdres, err := c.AddStudent(ctx, std)
-	// fmt.Println("AddStudent", stdres,err)
-	// fmt.Println()
+	std := &pb.User{
+		FirstName: "John",
+		LastName: "ammm",
+		Email:     "john.doe@example.com",
+	}
+	stdres, err := c.AddStudent(ctx, std)
+	fmt.Println("AddStudent", stdres,err)
+	fmt.Println()
 
 	// // fac := &pb.User{
 	// // 	FirstName: "facccc",
@@ -106,11 +108,17 @@ func main() {
 	// fmt.Println("GetFacultyById", r1)
 	// fmt.Println()
 
-	// empty := &pb.Empty{}
-	// bigres, err := c.GetAllCourses(ctx, empty)
-	// fmt.Println("GetAllCourses", bigres)
-	// fmt.Println()
+	empty := &pb.Empty{}
+	bigres, err := c.GetAllCourses(ctx, empty)
+	fmt.Println("GetAllCourses", bigres)
+	fmt.Println()
 
+	input := &pb.User{
+		Email:"john1@example.com",
+	}
+	output,err :=c.GetCoursesEnrolledByStudentEmail(ctx,input)
+	fmt.Println("Gettttttttttttttt",output,err)
+	fmt.Println()
 	// xx := &pb.User{
 	// 	ID: 2,
 	// }

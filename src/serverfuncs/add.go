@@ -23,39 +23,37 @@ func (u *UniversityServer) AddCourse(ctx context.Context, in *pb.CourseDetails) 
 	
 	var fid = in.GetFacultyID()
 	var c_name = in.GetName()
-	if c_name == "" {
-		return nil, fmt.Errorf("Course name cannot be empty!")
+	var c_image = in.GetImage()
+	if c_name == ""||c_image==""{
+		return nil, fmt.Errorf("Course fields cannot be empty!")
 	}
 
-	if fid==0{
-		x, err := u.Db.CreateCourse(c_name)
-		if err != nil {
-			return nil, err
-		}
-		res:=&pb.CourseDetails{
-			ID:   int32(x),
-			Name: c_name,
-		}
-		return res,nil
-	}
+	if fid!=0{
 
-	fac_exists, fac_err := u.Db.CheckFacultyExistance(fid)
-	if !fac_exists {
-		return nil, fac_err
+		fac_exists, fac_err := u.Db.CheckFacultyExistance(fid)
+		if !fac_exists {
+			return nil, fac_err
+		}
 	}
-	x, err := u.Db.CreateCourse(c_name)
+	id,image, err := u.Db.CreateCourse(c_name,c_image)
 	if err != nil {
 		return nil, err
 	}
+	if fid!=0{
+
+		err = u.Db.AddFacToCourse(fid, id)
+		if err != nil {
+			return nil, err
+		}
+	}
+	
 	
 	res := &pb.CourseDetails{
-		ID:   int32(x),
+		ID:   int32(id),
 		Name: c_name,
+		Image: image,
 	}
-	err = u.Db.AddFacToCourse(fid, x)
-	if err != nil {
-		return res, err
-	}
+	
 	res.FacultyID = fid
 	return res, nil
 }
